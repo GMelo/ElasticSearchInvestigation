@@ -1,7 +1,6 @@
 package org.gmelo.investigation.es.creation;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
@@ -27,6 +26,11 @@ public class ElasticSearchService {
     private final Client client;
     public final static String JAPANESE_LANGUAGE_ANALYSIS = "japanese_analyzer";
 
+    public ElasticSearchService(Client client) {
+        this.client = client;
+    }
+
+
     public ElasticSearchService(String server, int port, String clusterName) {
         logger.debug("Creating ES Service Instance on:{} and port:{}", server, port);
         this.client = new TransportClient(ImmutableSettings.builder()
@@ -46,6 +50,10 @@ public class ElasticSearchService {
         }
     }
 
+    /**
+     * Creates a Index for the customer using a japanese language tokenizer
+     *
+     */
     private void createCustomerIndex() {
         try {
             client.admin().indices().refresh(new RefreshRequest(Index.customer.name()));
@@ -78,6 +86,7 @@ public class ElasticSearchService {
 
             String indexProperties = Customer.indexProperties();
 
+            //if a index had properties
             if (indexProperties != null) {
                 createIndexProperties(Index.customer.name(), indexProperties);
             }
@@ -88,24 +97,11 @@ public class ElasticSearchService {
         }
     }
 
-    public void indexCandidate(String indexName, String type, Customer customer) {
-        ObjectMapper objectMapper = new ObjectMapper();
 
-        try {
-            String data = objectMapper.writeValueAsString(customer);
-
-            logger.debug("Sending index indexName={} indexType={} id={}", new Object[]{indexName, type, customer.getId()});
-            client.prepareIndex(indexName, type)
-                    .setId(customer.getId())
-                    .setSource(data)
-                    .execute().actionGet();
-
-        } catch (IOException e) {
-            logger.error("Error sending Index {}", e);
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * @param indexName the name of the index
+     * @param properties the specific properties of the index
+     */
     private void createIndexProperties(String indexName, String properties) {
         client.admin()
                 .indices()
@@ -116,9 +112,14 @@ public class ElasticSearchService {
                 .actionGet();
     }
 
-    public void deleteIndex(String indexName) {
+    /**
+     * Deletes a index by name
+     *
+     * @param indexName the index to be deleted
+     */
+    public void deleteIndex(Index indexName) {
         try {
-            DeleteIndexResponse deleteIndexResponse = client.admin().indices().delete(new DeleteIndexRequest(indexName)).actionGet();
+            DeleteIndexResponse deleteIndexResponse = client.admin().indices().delete(new DeleteIndexRequest(indexName.name())).actionGet();
 
             logger.debug("Delete index response={}", ToStringBuilder.reflectionToString(deleteIndexResponse));
         } catch (Exception e) {
