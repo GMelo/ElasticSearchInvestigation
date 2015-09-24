@@ -22,14 +22,14 @@ public class IndexingService {
         this.client = client;
     }
 
-    public void indexCandidate(String indexName, String type, Customer customer) {
+    public void index(String indexName, Customer customer) {
         ObjectMapper objectMapper = new ObjectMapper();
 
-            try {
+        try {
             String data = objectMapper.writeValueAsString(customer);
 
-            logger.debug("Sending index indexName={} indexType={} id={}", new Object[]{indexName, type, customer.getId()});
-            client.prepareIndex(indexName, type)
+            logger.debug("Sending index indexName={} indexType={} id={}", new Object[]{indexName, indexName, customer.getId()});
+            client.prepareIndex(indexName, indexName)
                     .setId(customer.getId())
                     .setSource(data)
                     .execute().actionGet();
