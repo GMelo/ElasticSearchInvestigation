@@ -122,4 +122,19 @@ public class ElasticSearchQueryServiceIT {
         response = elasticSearchQueryService.queryForFieldAndTerm("addressSet.country", "Brazil", ElasticSearchService.Index.customer);
         Assert.assertEquals(1, response.getHits().totalHits());
     }
+
+    @Test
+    public void index_WhenListOfComplexFieldOnAll() throws InterruptedException {
+        Set<String> interestSet = new HashSet<String>(Arrays.asList("Java", "Spring", "Elastic Search"));
+        //    public Address(String number, String streetName, String complement, String city, String country) {
+        Set<Address> addressSet = new HashSet<Address>();
+        addressSet.add(new Address("302", "AV. 4", "Maravista", "Rio de Janeiro", "Brazil"));
+        Set<Telephone> telephoneSet = null;
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+        indexingService.index("customer", customer);
+        Thread.sleep(900);
+
+        SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("_all", "Brazil", ElasticSearchService.Index.customer);
+        Assert.assertEquals(1, response.getHits().totalHits());
+    }
 }
