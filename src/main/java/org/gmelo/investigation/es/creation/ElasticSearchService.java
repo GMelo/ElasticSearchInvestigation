@@ -52,7 +52,6 @@ public class ElasticSearchService {
 
     /**
      * Creates a Index for the customer using a japanese language tokenizer
-     *
      */
     private void createCustomerIndex() {
         try {
@@ -73,7 +72,7 @@ public class ElasticSearchService {
                             .endObject()
                                     //
                             .startObject("analyzer")
-                            .startObject(JAPANESE_LANGUAGE_ANALYSIS)
+                            .startObject("default")
                             .field("type", "custom")
                             .field("tokenizer", "kuromoji_user_dict")
                             .endObject()
@@ -91,7 +90,7 @@ public class ElasticSearchService {
                 createIndexProperties(Index.customer.name(), indexProperties);
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error("Error Customer company Index");
             logger.error(e.getMessage());
         }
@@ -99,7 +98,7 @@ public class ElasticSearchService {
 
 
     /**
-     * @param indexName the name of the index
+     * @param indexName  the name of the index
      * @param properties the specific properties of the index
      */
     private void createIndexProperties(String indexName, String properties) {

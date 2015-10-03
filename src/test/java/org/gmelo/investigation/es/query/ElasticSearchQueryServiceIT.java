@@ -65,6 +65,51 @@ public class ElasticSearchQueryServiceIT {
     }
 
     @Test
+    public void index_WhenAll_JPN() throws InterruptedException {
+        Set<String> interestSet = null;
+        Set<Address> addressSet = null;
+        Set<Telephone> telephoneSet = null;
+        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+
+        indexingService.index("customer", customer);
+
+        Thread.sleep(900);
+        SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("_all", "輸出", ElasticSearchService.Index.customer);
+
+        Assert.assertEquals(1, response.getHits().totalHits());
+    }
+
+    @Test
+    public void index_WhenDirectField_JPN() throws InterruptedException {
+        Set<String> interestSet = null;
+        Set<Address> addressSet = null;
+        Set<Telephone> telephoneSet = null;
+        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+
+        indexingService.index("customer", customer);
+
+        Thread.sleep(900);
+        SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("firstName", "輸出", ElasticSearchService.Index.customer);
+
+        Assert.assertEquals(1, response.getHits().totalHits());
+    }
+
+    @Test
+    public void index_WhenDirectField_JPNField() throws InterruptedException {
+        Set<String> interestSet = null;
+        Set<Address> addressSet = null;
+        Set<Telephone> telephoneSet = null;
+        Customer customer = new Customer("1", "ント", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+
+        indexingService.index("customer", customer);
+
+        Thread.sleep(900);
+        SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("firstName", "ント", ElasticSearchService.Index.customer);
+
+        Assert.assertEquals(1, response.getHits().totalHits());
+    }
+
+    @Test
     public void index_WhenDirectField() throws InterruptedException {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;

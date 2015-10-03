@@ -27,11 +27,12 @@ public class ElasticSearchQueryService {
 
         SearchRequestBuilder searchRequestBuilder = new SearchRequestBuilder(client);
         BoolQueryBuilder qb = QueryBuilders.boolQuery();
+
         QueryStringQueryBuilder queryBuilder = QueryBuilders
                 .queryString(term)
                 .defaultField(field)
                 .defaultOperator(QueryStringQueryBuilder.Operator.AND);
-
+     //   queryBuilder.analyzer("default");
         qb.minimumShouldMatch("1");
         qb.must(queryBuilder);
 
