@@ -45,10 +45,12 @@ public class ComparisonInlineIT {
     private final Logger logger = LoggerFactory.getLogger(ComparisonInlineIT.class);
 
     @Before
-    public void setUp() {
+    public void setUp() throws InterruptedException {
         client = new TransportClient(ImmutableSettings.builder()
                 .put("cluster.name", clusterName).build())
                 .addTransportAddress(new InetSocketTransportAddress(server, port));
+
+        Thread.sleep(900);
     }
 
     @Test
@@ -116,7 +118,7 @@ public class ComparisonInlineIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "ント", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
         try {
             String data = objectMapper.writeValueAsString(customer);
 
@@ -136,7 +138,7 @@ public class ComparisonInlineIT {
         BoolQueryBuilder qb = QueryBuilders.boolQuery();
 
         QueryStringQueryBuilder queryBuilder = QueryBuilders
-                .queryString("ント")
+                .queryString("輸出")
                 .defaultField("firstName")
                 .defaultOperator(QueryStringQueryBuilder.Operator.AND);
         queryBuilder.analyzer("jpn_analyser");
@@ -184,7 +186,7 @@ public class ComparisonInlineIT {
                                     .endObject()
                                             //
                                     .startObject("analyzer")
-                                    //named default
+                                            //named default
                                     .startObject("default")
                                     .field("type", "custom")
                                     .field("tokenizer", "kuromoji_user_dict")
@@ -206,7 +208,7 @@ public class ComparisonInlineIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "ント", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
         try {
             String data = objectMapper.writeValueAsString(customer);
 
@@ -226,9 +228,10 @@ public class ComparisonInlineIT {
         BoolQueryBuilder qb = QueryBuilders.boolQuery();
 
         QueryStringQueryBuilder queryBuilder = QueryBuilders
-                .queryString("ント")
+                .queryString("輸出")
                 .defaultOperator(QueryStringQueryBuilder.Operator.AND);
         qb.minimumShouldMatch("1");
+        queryBuilder.analyzer("default");
         qb.must(queryBuilder);
 
         searchRequestBuilder.setQuery(qb);
@@ -271,7 +274,7 @@ public class ComparisonInlineIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "ント", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
         try {
             String data = objectMapper.writeValueAsString(customer);
 
@@ -291,7 +294,7 @@ public class ComparisonInlineIT {
         BoolQueryBuilder qb = QueryBuilders.boolQuery();
 
         QueryStringQueryBuilder queryBuilder = QueryBuilders
-                .queryString("ント")
+                .queryString("輸出")
                 .defaultField("firstName")
                 .defaultOperator(QueryStringQueryBuilder.Operator.AND);
         qb.minimumShouldMatch("1");
