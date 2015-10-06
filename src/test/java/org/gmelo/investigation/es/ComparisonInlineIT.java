@@ -51,7 +51,6 @@ public class ComparisonInlineIT {
 
         Thread.sleep(900);
     }
-    //開発
 
     @Test
          public void queryWithJapaneseAnalyserOnField() throws InterruptedException {
