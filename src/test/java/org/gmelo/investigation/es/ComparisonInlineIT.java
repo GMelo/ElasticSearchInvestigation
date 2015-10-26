@@ -38,6 +38,7 @@ public class ComparisonInlineIT {
     private final String server = "127.0.0.1";
     private final int port = 9300;
     private final String clusterName = "gmelo-local-elasticsearch";
+    Integer numberOfCalls = null;
 
     private Client client;
     private String indexName = "named_index";
@@ -117,7 +118,7 @@ public class ComparisonInlineIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
         try {
             String data = objectMapper.writeValueAsString(customer);
 
@@ -207,7 +208,7 @@ public class ComparisonInlineIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
         try {
             String data = objectMapper.writeValueAsString(customer);
 
@@ -273,7 +274,7 @@ public class ComparisonInlineIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet);
+        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
         try {
             String data = objectMapper.writeValueAsString(customer);
 

@@ -20,9 +20,10 @@ public class Customer {
     private final Set<String> interestSet;
     private final Set<Address> addressSet;
     private final Set<Telephone> telephoneSet;
+    private final Integer numberOfCalls;
 
 
-    public Customer(String id, String firstName, String lastName, String title, String occupation, String email, Set<String> interestSet, Set<Address> addressSet, Set<Telephone> telephoneSet) {
+    public Customer(String id, String firstName, String lastName, String title, String occupation, String email, Set<String> interestSet, Set<Address> addressSet, Set<Telephone> telephoneSet, Integer numberOfCalls) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -32,6 +33,7 @@ public class Customer {
         this.interestSet = interestSet;
         this.addressSet = addressSet;
         this.telephoneSet = telephoneSet;
+        this.numberOfCalls = numberOfCalls;
     }
 
     public String getFirstName() {
@@ -68,6 +70,10 @@ public class Customer {
 
     public String getId() {
         return id;
+    }
+
+    public Integer getNumberOfCalls() {
+        return numberOfCalls;
     }
 
     @Override
