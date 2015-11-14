@@ -58,28 +58,29 @@ public class ElasticSearchService {
             client.admin().indices().refresh(new RefreshRequest(Index.customer.name()));
             final CreateIndexRequestBuilder createIndexRequestBuilder = client.admin()
                     .indices()
-                    .prepareCreate(Index.customer.name())
-                    .setSettings(ImmutableSettings.settingsBuilder().loadFromSource(jsonBuilder()
-                            .startObject()
-                            .startObject("analysis")
-                                    //
-                            .startObject("tokenizer")
-                            .startObject("kuromoji_user_dict")
-                            .field("type", "kuromoji_tokenizer")
-                            .field("mode", "search")
-                            .field("discard_punctuation", "false")
-                            .endObject()
-                            .endObject()
-                                    //
-                            .startObject("analyzer")
-                            .startObject("default")
-                            .field("type", "custom")
-                            .field("tokenizer", "kuromoji_user_dict")
-                            .endObject()
-                            .endObject()
-                                    //
-                            .endObject()
-                            .endObject().string()));
+                    .prepareCreate(Index.customer.name());
+
+//                    .setSettings(ImmutableSettings.settingsBuilder().loadFromSource(jsonBuilder()
+//                            .startObject()
+//                            .startObject("analysis")
+//                                    //
+//                            .startObject("tokenizer")
+//                            .startObject("kuromoji_user_dict")
+//                            .field("type", "kuromoji_tokenizer")
+//                            .field("mode", "search")
+//                            .field("discard_punctuation", "false")
+//                            .endObject()
+//                            .endObject()
+//                                    //
+//                            .startObject("analyzer")
+//                            .startObject("default")
+//                            .field("type", "custom")
+//                            .field("tokenizer", "kuromoji_user_dict")
+//                            .endObject()
+//                            .endObject()
+//                                    //
+//                            .endObject()
+//                            .endObject().string()));
 
             createIndexRequestBuilder.execute().actionGet();
 

@@ -66,6 +66,52 @@ public class ElasticSearchQueryServiceIT {
     }
 
     @Test
+    public void index_WhenAllLong() throws InterruptedException {
+        Set<String> interestSet = null;
+        Set<Address> addressSet = null;
+        Set<Telephone> telephoneSet = null;
+        Customer customer = new Customer("1", "輸出貿易事務9年、メーカーの営業アシスタン", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
+
+        indexingService.index("customer", customer);
+
+        Thread.sleep(900);
+        SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("_all", "輸出貿易事務9年、メーカーの営業アシスタン", ElasticSearchService.Index.customer);
+
+        Assert.assertEquals(1, response.getHits().totalHits());
+    }
+
+    @Test
+    public void index_WhenAllLongNotAllMatch() throws InterruptedException {
+        Set<String> interestSet = null;
+        Set<Address> addressSet = null;
+        Set<Telephone> telephoneSet = null;
+        Customer customer = new Customer("1", "輸出貿易事務9年、メーカーの営業アシスタン", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
+
+        indexingService.index("customer", customer);
+
+        Thread.sleep(900);
+        SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("_all", "メーカーの営業アシスタン", ElasticSearchService.Index.customer);
+
+        Assert.assertEquals(1, response.getHits().totalHits());
+    }
+
+    @Test
+    public void index_WhenAll_JPNWildcard() throws InterruptedException {
+        Set<String> interestSet = null;
+        Set<Address> addressSet = null;
+        Set<Telephone> telephoneSet = null;
+        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
+
+        indexingService.index("customer", customer);
+
+        Thread.sleep(900);
+        SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("_all", "*", ElasticSearchService.Index.customer);
+
+        Assert.assertEquals(1, response.getHits().totalHits());
+    }
+
+
+    @Test
     public void index_WhenAll_JPN() throws InterruptedException {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
@@ -121,6 +167,21 @@ public class ElasticSearchQueryServiceIT {
 
         Thread.sleep(900);
         SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("firstName", "Guilherme", ElasticSearchService.Index.customer);
+
+        Assert.assertEquals(1, response.getHits().totalHits());
+    }
+
+    @Test
+    public void index_WhenDirectFieldWildcard() throws InterruptedException {
+        Set<String> interestSet = null;
+        Set<Address> addressSet = null;
+        Set<Telephone> telephoneSet = null;
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
+
+        indexingService.index("customer", customer);
+
+        Thread.sleep(900);
+        SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("firstName", "Gui*", ElasticSearchService.Index.customer);
 
         Assert.assertEquals(1, response.getHits().totalHits());
     }

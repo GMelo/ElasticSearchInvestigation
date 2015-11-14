@@ -324,13 +324,6 @@ public class NumericQuery {
                 .lte(50)
                 .gte(25);
 
-
-        //QueryStringQueryBuilder queryBuilder = QueryBuilders
-
-//                .queryString(term)
-//                .defaultField(field)
-        //  .defaultOperator(QueryStringQueryBuilder.Operator.AND);
-        //   queryBuilder.analyzer("default");
         qb.minimumShouldMatch("1");
         qb.must(queryBuilder);
         searchRequestBuilder.setQuery(qb);
