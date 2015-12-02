@@ -51,7 +51,7 @@ public class IndexingServiceTestIT {
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
         Integer numberOfCalls = 20;
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, null);
 
         indexingService.index("customer", customer);
 

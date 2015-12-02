@@ -4,6 +4,8 @@ import org.gmelo.investigation.es.IndexConstants;
 import org.gmelo.investigation.es.creation.ElasticSearchService;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
@@ -21,9 +23,10 @@ public class Customer {
     private final Set<Address> addressSet;
     private final Set<Telephone> telephoneSet;
     private final Integer numberOfCalls;
+    private final LocalDateTime date;
 
 
-    public Customer(String id, String firstName, String lastName, String title, String occupation, String email, Set<String> interestSet, Set<Address> addressSet, Set<Telephone> telephoneSet, Integer numberOfCalls) {
+    public Customer(String id, String firstName, String lastName, String title, String occupation, String email, Set<String> interestSet, Set<Address> addressSet, Set<Telephone> telephoneSet, Integer numberOfCalls, LocalDateTime localDateTime) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,6 +37,7 @@ public class Customer {
         this.addressSet = addressSet;
         this.telephoneSet = telephoneSet;
         this.numberOfCalls = numberOfCalls;
+        this.date = localDateTime;
     }
 
     public String getFirstName() {
@@ -74,6 +78,10 @@ public class Customer {
 
     public Integer getNumberOfCalls() {
         return numberOfCalls;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
     }
 
     @Override

@@ -54,7 +54,7 @@ public class ComparisonInlineIT {
     }
 
     @Test
-         public void queryWithJapaneseAnalyserOnField() throws InterruptedException {
+    public void queryWithJapaneseAnalyserOnField() throws InterruptedException {
         try {
             client.admin().indices().refresh(new RefreshRequest(indexName));
             final CreateIndexRequestBuilder createIndexRequestBuilder = client.admin()
@@ -118,7 +118,7 @@ public class ComparisonInlineIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
+        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, null);
         try {
             String data = objectMapper.writeValueAsString(customer);
 
@@ -208,7 +208,7 @@ public class ComparisonInlineIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
+        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, null);
         try {
             String data = objectMapper.writeValueAsString(customer);
 
@@ -274,7 +274,7 @@ public class ComparisonInlineIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls);
+        Customer customer = new Customer("1", "開発者ジャワ", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, null);
         try {
             String data = objectMapper.writeValueAsString(customer);
 

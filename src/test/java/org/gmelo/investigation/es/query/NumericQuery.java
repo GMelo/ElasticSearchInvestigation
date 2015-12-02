@@ -1,9 +1,5 @@
 package org.gmelo.investigation.es.query;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.lucene.queryparser.flexible.core.builders.QueryBuilder;
-import org.apache.lucene.queryparser.xml.builders.NumericRangeQueryBuilder;
-import org.apache.lucene.search.NumericRangeQuery;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -25,6 +21,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
@@ -40,6 +37,7 @@ public class NumericQuery {
     private ElasticSearchQueryService elasticSearchQueryService;
     private ElasticSearchService elasticSearchService;
     private IndexingService indexingService;
+    private LocalDateTime localDateTime = null;
 
     @Before
     public void setUp() throws InterruptedException {
@@ -63,7 +61,7 @@ public class NumericQuery {
         Integer numberOfCalls = 30;
         String indexName = "customer";
         Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org",
-                interestSet, addressSet, telephoneSet, numberOfCalls);
+                interestSet, addressSet, telephoneSet, numberOfCalls, null);
 
         indexingService.index(indexName, customer);
 
@@ -112,7 +110,7 @@ public class NumericQuery {
         Integer numberOfCalls = 30;
         String indexName = "customer";
         Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org",
-                interestSet, addressSet, telephoneSet, numberOfCalls);
+                interestSet, addressSet, telephoneSet, numberOfCalls, null);
 
         indexingService.index(indexName, customer);
 
@@ -161,7 +159,7 @@ public class NumericQuery {
         Integer numberOfCalls = 50;
         String indexName = "customer";
         Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org",
-                interestSet, addressSet, telephoneSet, numberOfCalls);
+                interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
 
         indexingService.index(indexName, customer);
 
@@ -211,7 +209,7 @@ public class NumericQuery {
         Integer numberOfCalls = 50;
         String indexName = "customer";
         Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org",
-                interestSet, addressSet, telephoneSet, numberOfCalls);
+                interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
 
         indexingService.index(indexName, customer);
 
@@ -260,7 +258,7 @@ public class NumericQuery {
         Integer numberOfCalls = 50;
         String indexName = "customer";
         Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org",
-                interestSet, addressSet, telephoneSet, numberOfCalls);
+                interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
 
         indexingService.index(indexName, customer);
 
@@ -310,7 +308,7 @@ public class NumericQuery {
         Integer numberOfCalls = 30;
         String indexName = "customer";
         Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org",
-                interestSet, addressSet, telephoneSet, numberOfCalls);
+                interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
 
         indexingService.index(indexName, customer);
 
@@ -354,7 +352,7 @@ public class NumericQuery {
         Integer numberOfCalls = 40;
         String indexName = "customer";
         Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org",
-                interestSet, addressSet, telephoneSet, numberOfCalls);
+                interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
 
         indexingService.index(indexName, customer);
 
@@ -400,7 +398,7 @@ public class NumericQuery {
         Integer numberOfCalls = null;
         String indexName = "customer";
         Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org",
-                interestSet, addressSet, telephoneSet, numberOfCalls);
+                interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
 
         indexingService.index(indexName, customer);
 
@@ -451,7 +449,7 @@ public class NumericQuery {
         Integer numberOfCalls = null;
         String indexName = "customer";
         Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org",
-                interestSet, addressSet, telephoneSet, null);
+                interestSet, addressSet, telephoneSet, null, localDateTime);
 
         indexingService.index(indexName, customer);
 
