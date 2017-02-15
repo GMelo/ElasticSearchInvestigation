@@ -21,7 +21,7 @@ public class ElasticSearchService {
 
     private final Logger logger = LoggerFactory.getLogger(ElasticSearchService.class);
 
-    public enum Index {customer, product}
+    public enum Index {customer, product, date}
 
     private final Client client;
     public final static String JAPANESE_LANGUAGE_ANALYSIS = "japanese_analyzer";
@@ -44,6 +44,9 @@ public class ElasticSearchService {
                 createCustomerIndex();
                 break;
             case product:
+                break;
+            case date:
+                createDateIndex();
                 break;
             default:
                 logger.error("Unknown index:{}", index);
@@ -89,6 +92,29 @@ public class ElasticSearchService {
             //if a index had properties
             if (indexProperties != null) {
                 createIndexProperties(Index.customer.name(), indexProperties);
+            }
+
+        } catch (Exception e) {
+            logger.error("Error Customer company Index");
+            logger.error(e.getMessage());
+        }
+    }
+
+    private void createDateIndex() {
+        try {
+            client.admin().indices().refresh(new RefreshRequest(Index.date.name()));
+            final CreateIndexRequestBuilder createIndexRequestBuilder = client.admin()
+                    .indices()
+                    .prepareCreate(Index.date.name());
+
+
+            createIndexRequestBuilder.execute().actionGet();
+
+            String indexProperties = Customer.indexProperties();
+
+            //if a index had properties
+            if (indexProperties != null) {
+                createIndexProperties(Index.date.name(), indexProperties);
             }
 
         } catch (Exception e) {

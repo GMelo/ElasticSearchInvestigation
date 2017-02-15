@@ -9,12 +9,14 @@ import org.gmelo.investigation.es.creation.ElasticSearchService;
 import org.gmelo.investigation.es.query.ElasticSearchQueryService;
 import org.gmelo.investigation.model.Address;
 import org.gmelo.investigation.model.Customer;
+import org.gmelo.investigation.model.Qualification;
 import org.gmelo.investigation.model.Telephone;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 public class IndexingServiceTestIT {
@@ -51,7 +53,14 @@ public class IndexingServiceTestIT {
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
         Integer numberOfCalls = 20;
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, null);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, null, LocalDate.now());
+
+        Qualification qualification = new Qualification();
+        qualification.setDate(LocalDate.now());
+        qualification.setInstitution("LaSalle");
+        qualification.setType(Qualification.Type.ACADEMIC);
+        qualification.setField("IT");
+        customer.addQualification(qualification);
 
         indexingService.index("customer", customer);
 

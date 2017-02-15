@@ -16,6 +16,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -33,6 +34,7 @@ public class ElasticSearchQueryServiceIT {
     private IndexingService indexingService;
     private Integer numberOfCalls = 0;
     private LocalDateTime localDateTime = null;
+    private LocalDate localDate = null;
 
     @Before
     public void setUp() throws InterruptedException {
@@ -58,7 +60,7 @@ public class ElasticSearchQueryServiceIT {
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
         LocalDateTime localDateTime = LocalDateTime.of(2015, 12, 01, 0, 0);
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -73,7 +75,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -88,7 +90,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "輸出貿易事務9年、メーカーの営業アシスタン", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "輸出貿易事務9年、メーカーの営業アシスタン", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -103,7 +105,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "輸出貿易事務9年、メーカーの営業アシスタン", "Melo de melgaço", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "輸出貿易事務9年、メーカーの営業アシスタン", "Melo de melgaço", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -118,7 +120,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -134,7 +136,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -149,7 +151,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "輸出貿易", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -164,7 +166,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "ント", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "ント", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -179,7 +181,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -194,7 +196,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = null;
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -209,7 +211,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = new HashSet<String>(Arrays.asList("Java", "Spring", "Elastic Search"));
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
 
         indexingService.index("customer", customer);
 
@@ -224,7 +226,7 @@ public class ElasticSearchQueryServiceIT {
         Set<String> interestSet = new HashSet<String>(Arrays.asList("Java", "Spring", "Elastic Search"));
         Set<Address> addressSet = null;
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
         indexingService.index("customer", customer);
         Thread.sleep(900);
         SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("interestSet", "Java", ElasticSearchService.Index.customer);
@@ -238,7 +240,7 @@ public class ElasticSearchQueryServiceIT {
         Set<Address> addressSet = new HashSet<Address>();
         addressSet.add(new Address("302", "AV. 4", "Maravista", "Rio de Janeiro", "Brazil"));
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
         indexingService.index("customer", customer);
         Thread.sleep(900);
         SearchResponse response = elasticSearchQueryService.queryForFieldAndTerm("addressSet", "Brazil", ElasticSearchService.Index.customer);
@@ -255,7 +257,7 @@ public class ElasticSearchQueryServiceIT {
         Set<Address> addressSet = new HashSet<Address>();
         addressSet.add(new Address("302", "AV. 4", "Maravista", "Rio de Janeiro", "Brazil"));
         Set<Telephone> telephoneSet = null;
-        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime);
+        Customer customer = new Customer("1", "Guilherme", "Melo", "title", "Test Writer", "test@gmail.org", interestSet, addressSet, telephoneSet, numberOfCalls, localDateTime, localDate);
         indexingService.index("customer", customer);
         Thread.sleep(900);
 

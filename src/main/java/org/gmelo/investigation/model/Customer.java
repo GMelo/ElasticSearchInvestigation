@@ -6,6 +6,8 @@ import org.gmelo.investigation.es.creation.ElasticSearchService;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
@@ -24,9 +26,11 @@ public class Customer {
     private final Set<Telephone> telephoneSet;
     private final Integer numberOfCalls;
     private final LocalDateTime date;
+    private final LocalDate localDate;
+    private final List<Qualification> qualificationList = new ArrayList<>();
 
 
-    public Customer(String id, String firstName, String lastName, String title, String occupation, String email, Set<String> interestSet, Set<Address> addressSet, Set<Telephone> telephoneSet, Integer numberOfCalls, LocalDateTime localDateTime) {
+    public Customer(String id, String firstName, String lastName, String title, String occupation, String email, Set<String> interestSet, Set<Address> addressSet, Set<Telephone> telephoneSet, Integer numberOfCalls, LocalDateTime localDateTime, LocalDate localDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,6 +42,11 @@ public class Customer {
         this.telephoneSet = telephoneSet;
         this.numberOfCalls = numberOfCalls;
         this.date = localDateTime;
+        this.localDate = localDate;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 
     public String getFirstName() {
@@ -82,6 +91,14 @@ public class Customer {
 
     public LocalDateTime getDate() {
         return date;
+    }
+
+    public List<Qualification> getQualificationList() {
+        return qualificationList;
+    }
+
+    public void addQualification(Qualification qualification) {
+        this.qualificationList.add(qualification);
     }
 
     @Override
